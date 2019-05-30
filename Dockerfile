@@ -1,14 +1,13 @@
 FROM alpine:3.9.4
 
 RUN apk -U update && \
-  apk add bash curl openssh-client wget openssl openjdk8-jre supervisor && \
-  apk upgrade
+  apk add bash curl openssh-client wget openssl openjdk8-jre supervisor --no-cache && \
+  apk upgrade --no-cache && rm -rf /var/cache/apk/*
 
 ENV HADOOP_VERSION 3.2.0
 RUN curl http://apache.mirror.rafal.ca/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz | tar xz && \
-  mkdir -p /usr/local/hadoop && mv hadoop-$HADOOP_VERSION/* /usr/local/hadoop && rm -rf hadoop-$HADOOP_VERSION
-
-RUN rm -rf /usr/local/hadoop/share/doc && \
+  mkdir -p /usr/local/hadoop && mv hadoop-$HADOOP_VERSION/* /usr/local/hadoop && rm -rf hadoop-$HADOOP_VERSION && \
+  rm -rf /usr/local/hadoop/share/doc && \
   rm -rf /usr/local/hadoop/share/hadoop/mapreduce && \
   rm -rf /usr/local/hadoop/share/hadoop/tools && \
   rm -rf /usr/local/hadoop/share/hadoop/common/jdiff && \
