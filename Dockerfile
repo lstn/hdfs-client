@@ -1,8 +1,8 @@
 FROM ubuntu
 RUN apt-get update -qq 
 RUN apt-get install -y default-jdk wget
-RUN wget http://apache.mindstudios.com/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz
-RUN tar xvzf hadoop-2.6.0.tar.gz && mkdir -p /usr/local/hadoop && mv hadoop-2.6.0/* /usr/local/hadoop && rm -rf hadoop-2.6.0
+RUN wget http://apache.forsale.plus/hadoop/common/hadoop-3.2.0/hadoop-3.2.0.tar.gz
+RUN tar xvzf hadoop-3.2.0.tar.gz && mkdir -p /usr/local/hadoop && mv hadoop-3.2.0/* /usr/local/hadoop && rm -rf hadoop-3.2.0
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV HADOOP_INSTALL=/usr/local/hadoop
 ENV PATH=$PATH:$HADOOP_INSTALL/bin
