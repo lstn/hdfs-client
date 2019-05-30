@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.9.4
 
 RUN apk -U update && \
   apk add bash curl openssh-client wget openssl openjdk8-jre supervisor && \
@@ -24,15 +24,14 @@ RUN rm -rf /usr/local/hadoop/share/doc && \
   rm -rf /usr/local/hadoop/share/hadoop/yarn/lib && \
   rm -rf /usr/lib/python2.7
 
-ENV JAVA_HOME=/usr/lib/jvm/default-jvm
-ENV HADOOP_INSTALL=/usr/local/hadoop
-ENV PATH=$PATH:$HADOOP_INSTALL/bin
-ENV PATH=$PATH:$HADOOP_INSTALL/sbin
-ENV HADOOP_MAPRED_HOME=$HADOOP_INSTALL
-ENV HADOOP_COMMON_HOME=$HADOOP_INSTALL
-ENV HADOOP_HDFS_HOME=$HADOOP_INSTALL
-ENV YARN_HOME=$HADOOP_INSTALL
-ENV HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_INSTALL/lib/native
-ENV HADOOP_OPTS="-Djava.library.path=$HADOOP_INSTALL/lib/native"
-ENV HADOOP_USER_NAME=hdfs
-ENV HDFS_NS=hdfs://hdfs
+ENV JAVA_HOME /usr/lib/jvm/default-jvm
+ENV HADOOP_INSTALL /usr/local/hadoop
+ENV PATH $PATH:$HADOOP_INSTALL/bin:$HADOOP_INSTALL/sbin
+ENV HADOOP_MAPRED_HOME $HADOOP_INSTALL
+ENV HADOOP_COMMON_HOME $HADOOP_INSTALL
+ENV HADOOP_HDFS_HOME $HADOOP_INSTALL
+ENV YARN_HOME $HADOOP_INSTALL
+ENV HADOOP_COMMON_LIB_NATIVE_DIR $HADOOP_INSTALL/lib/native
+ENV HADOOP_OPTS "-Djava.library.path=$HADOOP_COMMON_LIB_NATIVE_DIR"
+ENV HADOOP_USER_NAME hdfs
+ENV HDFS_NS hdfs://hdfs
