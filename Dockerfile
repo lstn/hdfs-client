@@ -22,7 +22,9 @@ RUN curl http://apache.mirror.rafal.ca/hadoop/common/hadoop-$HADOOP_VERSION/hado
   rm -rf /usr/local/hadoop/share/hadoop/yarn/webapps && \
   rm -rf /usr/local/hadoop/share/hadoop/yarn/yarn-service-examples && \
   rm -rf /usr/local/hadoop/share/hadoop/yarn/lib && \
-  rm -rf /usr/lib/python2.7
+  cat /dev/null | tee /usr/local/hadoop/share/hadoop/yarn/*.jar && \
+  rm -rf /usr/local/lib/native/examples && \
+  rm -rf /usr/lib/python2.7 
 
 ENV JAVA_HOME /usr/lib/jvm/default-jvm
 ENV HADOOP_INSTALL /usr/local/hadoop
